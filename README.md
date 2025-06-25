@@ -22,7 +22,6 @@
 
 ## Installation
 
-```bash
-git clone https://github.com/yourusername/projectname.git
-cd projectname
-npm install
+1- Mount yoour goole drive
+from google.colab import drive
+drive.mount('/content/drive')
