@@ -1,4 +1,4 @@
-# Project Title
+# Тренировка YOLO11
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -11,6 +11,7 @@
 - Обсудите результаты и сделайте выводы
 
 ## Screenshots
+Видеофайлы ![image](https://github.com/user-attachments/assets/a7bb43d7-8bfc-4660-871c-bf4efeb479c0)
 
 ![App Screenshot](screenshot.png)
 
