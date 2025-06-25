@@ -3,13 +3,12 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-A brief description of what your project does and who it's for.
-
+Создаем набор данных и обучаем YOLO 11 на основе этого пользовательского набора данных и обсуждаем результаты и показатели
 ## Features
 
-- Feature 1
-- Feature 2
-- Feature 3
+- Создание набора данных из видео
+- Создайте и обучите YOLO 11 для нескольких итераций
+- Обсудите результаты и сделайте выводы
 
 ## Screenshots
 
