@@ -153,3 +153,27 @@ while frame_count<=178 :
 
    frame_count+=1;
 ```
+# 6- Building Train/val/Test dataset
+```bash
+import os
+import random
+import shutil
+from sklearn.model_selection import train_test_split
+
+
+images_dir = raw_img_dir
+labels_dir = raw_lbl_dir
+output_dir = dataset_dir
+
+# Create output directories
+for folder in ['train', 'val', 'test']:
+    os.makedirs(os.path.join(output_dir, 'images', folder), exist_ok=True)
+    os.makedirs(os.path.join(output_dir, 'labels', folder), exist_ok=True)
+
+# Get list of image files (assuming .jpg, modify if different)
+image_files = [f for f in os.listdir(images_dir) if f.endswith('.jpg')]
+
+# Split into train+temp (80%), then split temp into val and test (50% each)
+train_files, temp_files = train_test_split(image_files, test_size=0.2, random_state=42)
+val_files, test_files = train_test_split(temp_files, test_size=0.5, random_state=42)
+```
