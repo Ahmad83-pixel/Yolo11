@@ -176,4 +176,52 @@ image_files = [f for f in os.listdir(images_dir) if f.endswith('.jpg')]
 # Split into train+temp (80%), then split temp into val and test (50% each)
 train_files, temp_files = train_test_split(image_files, test_size=0.2, random_state=42)
 val_files, test_files = train_test_split(temp_files, test_size=0.5, random_state=42)
+
+# Copy Files into dataset
+def copy_files(files, split_name):
+   
+    for file in files:
+        # Copy image
+        shutil.copy(
+            os.path.join(images_dir, file),
+            os.path.join(output_dir, 'images', split_name, file)
+        )
+
+        # Copy corresponding label file (assuming .txt format)
+        label_file = os.path.splitext(file)[0] + '.txt'
+        shutil.copy(
+            os.path.join(labels_dir, label_file),
+            os.path.join(output_dir, 'labels', split_name, label_file)
+        )
+
+# Copy files to their respective directories
+copy_files(train_files, 'train')
+copy_files(val_files, 'val')
+copy_files(test_files, 'test')
+
+# Print statistics
+print(f"Total images: {len(image_files)}")
+print(f"Train: {len(train_files)} ({len(train_files)/len(image_files):.1%})")
+print(f"Validation: {len(val_files)} ({len(val_files)/len(image_files):.1%})")
+print(f"Test: {len(test_files)} ({len(test_files)/len(image_files):.1%})")
 ```
+
+# 7- Building/Training YOLO11
+```bash
+!pip install ultralytics
+from ultralytics import YOLO
+
+# Load a pretrained YOLO11n model
+model = YOLO("yolo11n.pt")
+
+# Train the model
+results = model.train(
+    data= dataset_dir+'Dinner_dataset.yaml',
+    epochs=60,
+    imgsz=640,
+    batch=16,
+    device='cpu',
+    val=True,       # Enable validation
+    plots=True,    # Generate metric plots
+    save_json=True  # Save metrics to JSON
+)
