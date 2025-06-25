@@ -25,5 +25,7 @@
 ## Installation
 
 ## Mount yoour goole drive
+```bash
 from google.colab import drive
 drive.mount('/content/drive')
+```
