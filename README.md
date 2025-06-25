@@ -225,3 +225,44 @@ results = model.train(
     plots=True,    # Generate metric plots
     save_json=True  # Save metrics to JSON
 )
+```
+# 8- Printing Results
+```bash
+import pandas as pd
+from google.colab import files
+from IPython.display import display
+
+
+# Read and display CSV
+results_df = pd.read_csv('/content/runs/detect/train19/results.csv')  # or next(iter(uploaded.keys()))
+display(results_df.head())  # Shows first 5 rows with nice formatting
+
+# For full table with scroll
+display(results_df.style.set_properties(**{'text-align': 'center'}).set_table_styles(   [dict(selector='th', props=[('text-align', 'center')])]))
+```
+# 9- Printing Metrics
+```bash
+mport matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+res_dir='/content/runs/detect/train19/'
+# List of YOLO result images you might have
+result_images = [
+    'results.png',          # Training metrics plot
+    'confusion_matrix.png', # Confusion matrix
+    'F1_curve.png',        # F1-score curve
+    'P_curve.png',         # Precision curve
+    'R_curve.png'          # Recall curve
+]
+
+# Display each image that exists
+for img_file in result_images:
+    try:
+        plt.figure(figsize=(10, 6))
+        img = mpimg.imread(res_dir+img_file)
+        plt.imshow(img)
+        plt.title(img_file.split('.')[0].replace('_', ' ').title())
+        plt.axis('off')
+        plt.show()
+    except FileNotFoundError:
+        print(f"Note: {img_file} not found ")
+```
